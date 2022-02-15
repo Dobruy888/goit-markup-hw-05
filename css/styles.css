@@ -231,7 +231,14 @@ body {
   cursor: pointer;
   border-radius: 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition-property: box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+.hero-button:hover {
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15); */
+}
+
 /* Преимущества */
 .benefits-section {
   padding-top: 94px;
@@ -370,7 +377,7 @@ body {
   align-items: center;
   justify-content: center;
   fill: #afb1b8;
-  /* background-color: rgba(255, 255, 255, 0.1); */
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   transition-property: color, background-color;
@@ -378,8 +385,8 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link-icon {
-  transition-property: color, background-color;
-  transition-duration: 50000000000000ms;
+  transition-property: fill;
+  transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-team-link:hover,
@@ -422,16 +429,14 @@ body {
   width: 170px;
   height: 92px;
   fill: #afb1b8;
-  position: relative;
   transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-logo-link {
-  position: relative;
-  transition-property: color;
-  transition-duration: 2000ms;
+  transition-property: fill;
+  transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -474,7 +479,7 @@ body {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
-/* .section-examples .item-flex:focus */
+
 .pic {
   display: block;
 }
@@ -589,7 +594,6 @@ body {
   font-size: 14px;
   line-height: 2;
   letter-spacing: 0.03em;
-  position: relative;
   transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -652,4 +656,160 @@ body {
 .icon-click:hover,
 .icon-click:focus {
   background-color: var(--accent-color);
+}
+
+/* Модальное окно */
+.backdrop {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: opacity, 600ms;
+  transition-duration: 250ms;
+}
+
+.backdrop.is-hidden {
+  pointer-events: auto;
+  visibility: hidden;
+  opacity: 250ms;
+}
+.modal {
+  /* z-index: 3; */
+  width: 528px;
+  min-height: 581px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.button-x {
+}
+.modal-p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #303030;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.brim-modal {
+  margin-bottom: 10px;
+}
+
+.modal-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.box-input {
+  position: relative;
+}
+
+.modal-input:focus {
+  border-color: var(--accent-color);
+}
+
+.modal-input:focus + .modal-icon {
+  fill: var(--accent-color);
+}
+
+.modal-input,
+.modal-text {
+  outline: none;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  background-color: transparent;
+  padding-left: 30px;
+  padding-right: 10px;
+  font-size: 14px;
+  color: teal;
+}
+
+.modal-text {
+  height: 100px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  resize: none;
+}
+
+.modal-input::placeholder {
+  color: greenyellow;
+}
+
+.modal-label {
+  font-size: 12px;
+  color: #999999;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-check-text {
+  font-size: 14px;
+  color: #999999;
+  display: flex;
+}
+
+.check-icon {
+  fill: transparent;
+}
+
+.modal-check-text span {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #303030;
+  border-radius: 2px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-check:checked + .modal-check-text span {
+  background-color: var(--accent-color);
+  border: none;
+}
+
+.modal-check:checked + .modal-check-text svg {
+  fill: #ffffff;
+}
+
+.modal-check-text::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border: 2px solid #303030;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+.modal-check:checked + .modal-check-text::before {
+  background-color: var(--accent-color);
+  background-image: url(../img/check.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
 }
